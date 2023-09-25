@@ -1,0 +1,83 @@
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+.container_header_section{
+    display: flex;
+    justify-content: space-between;
+    background-color: rgb(19, 19, 19);
+}
+.container_figure_logo_header > img{
+    padding: 20px;
+    width: 120px;
+}
+.list_bar_header{
+    display: flex;
+    align-items: center;
+}
+.list_bar_header>ul{
+    display: flex;
+    list-style: none;
+}
+.list_bar_header>ul>li{
+    font-size: 20px;
+    margin: 10px;
+    color: white;
+}
+.container_images_main_style{
+    display: flex;
+}
+.container_images_main_style>div{
+    margin: 10px;
+    padding: 10px;
+    border: 1px solid rgb(114, 114, 114);
+    border-radius: 20px;
+}
+.container_images_main_style>div>figure{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.container_images_main_style>div>figure>img{
+    width: 290px;
+}
+.container_images_main_style>div>figure>h2{
+    text-align: center;
+    margin: 10px;
+}
+
+.section_options_clothes{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+}
+.section_options_clothes>p{
+    display: flex;
+    align-items: center;
+    font-size: 18px;
+    margin-left: 12px;
+}
+.section_options_clothes>select{
+    width: 80px;
+    height: 30px;
+    font-size: 18px;
+}
+.container_images_main_style>div>section>p{
+    font-size: 18px;
+    margin-left: 12px;
+}
+.container_images_main_style>div>section>textarea{
+    margin: 10px;
+    border-radius: 10px;
+    width: 300px;
+    height: 80px;
+}
+.container_images_main_style>div>button{
+    margin-top: 10px;
+    width: 100%;
+    height: 40px;
+    border-radius: 10px;
+    border: none;
+}
