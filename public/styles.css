@@ -197,6 +197,27 @@ button{
     border-radius: 6px;
     padding: 3em 2.5em;
 }
+.container_contain_wsGmail>figure{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.icon_x_wsgm{
+    width: 25px;
+    position: absolute;
+    top: 195px;
+    left: 360px;
+    cursor: pointer;
+}
 .btn_ws_gmail{
     width: 100px;
+    cursor: pointer;
+}
+.btn_gmail_ws{
+    width: 110px;
+    cursor: pointer;
+}
+.btn_gmail_close{
+    opacity: 1;
+    pointer-events: none;
 }

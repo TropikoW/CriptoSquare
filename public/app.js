@@ -39,15 +39,25 @@ function loadPage() {
     function sendOrder() {
         function sendOrderWsGmail() {
             containerModal = `
-                <div class="container_modal_wsGmail">
-                    <section class="container_contain_wsGmail">
+                <div class="container_modal_wsGmail" id="container_modal_wsGmail">
+                    <section class="container_contain_wsGmail" id="container_contain_gsGmail">
+                        <figure>
+                            <img src="./resources/img/icone-x-avec-cercle-gris.png" class="icon_x_wsgm" id="icon_x_wsgm">
+                        </figure>
+                        <h2>¡Ya estamos a punto!,elige alguna de las dos opciones para finalmente enviar tu pedido</h2>
                         <figure>
                             <img src="./resources/img/whatsapp-logo-png.png" class="btn_ws_gmail">
+                            <img src="./resources/img/logo_gmail_png.png" class="btn_gmail_ws">
                         </figure>
                     </section>
                 </div>
-            `
+            `;
             containerModalWsGM.innerHTML = containerModal;
+            const iconXwsgm = document.querySelector('#icon_x_wsgm');
+            iconXwsgm.addEventListener('click',function() {
+                containerModal = '';
+                containerModalWsGM.innerHTML = containerModal;
+            });
         };
         containerModal = `
             <div class="container_modal_buyload" id="container_modal_buyload">
