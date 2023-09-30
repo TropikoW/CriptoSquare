@@ -5,6 +5,8 @@ const containerModalWsGM = document.querySelector('#container_modal_ws_gm');
 let updatedPrice = '26/09/23 - 17:36 PM';
 
 let tshirt = [];
+let listShirt = [];
+let listAddres = [];
 let optionClothes;
 let containerModal;
 
@@ -38,20 +40,26 @@ let tshirtoversizewhite = new Clothes(2,'Shirts','Camiseta Oversize Blanca','./r
 function loadPage() {
     function sendOrder() {
         function sendOrderWsGmail() {
+           listShirt.forEach((listOne)=>{
             containerModal = `
-                <div class="container_modal_wsGmail" id="container_modal_wsGmail">
-                    <section class="container_contain_wsGmail" id="container_contain_gsGmail">
-                        <figure>
-                            <img src="./resources/img/icone-x-avec-cercle-gris.png" class="icon_x_wsgm" id="icon_x_wsgm">
-                        </figure>
-                        <h2>¡Ya estamos a punto!,elige alguna de las dos opciones para finalmente enviar tu pedido</h2>
-                        <figure>
+            <div class="container_modal_wsGmail" id="container_modal_wsGmail">
+                <section class="container_contain_wsGmail" id="container_contain_gsGmail">
+                    <figure>
+                        <img src="./resources/img/icone-x-avec-cercle-gris.png" class="icon_x_wsgm" id="icon_x_wsgm">
+                    </figure>
+                    <h2>¡Ya estamos a punto!,elige alguna de las dos opciones para finalmente enviar tu pedido</h2>
+                    <figure>
+                        <a href="https://wa.me/573152264378?text=¡Hola,estos%20son%20los%20detalles%20de%20mi%20pedido!:${listOne.name},${listOne.color},${listOne.size},${listOne.quantity},${listOne.detail},esta%20es%20el%20detalle%20de%20mi%20dirección:,,," target="_blank">
                             <img src="./resources/img/whatsapp-logo-png.png" class="btn_ws_gmail">
-                            <img src="./resources/img/logo_gmail_png.png" class="btn_gmail_ws">
-                        </figure>
-                    </section>
-                </div>
+                        </a>
+                        <img src="./resources/img/logo_gmail_png.png" class="btn_gmail_ws">
+                    </figure>
+                </section>
+            </div>
             `;
+           })
+            console.log(listAddres);
+            console.log(listShirt);
             containerModalWsGM.innerHTML = containerModal;
             const iconXwsgm = document.querySelector('#icon_x_wsgm');
             iconXwsgm.addEventListener('click',function() {
@@ -59,7 +67,8 @@ function loadPage() {
                 containerModalWsGM.innerHTML = containerModal;
             });
         };
-        containerModal = `
+        listShirt.forEach((foreachshirt)=>{
+            containerModal = `
             <div class="container_modal_buyload" id="container_modal_buyload">
                 <section class="container_contain_modal_buyload">
                     <figure>
@@ -72,30 +81,36 @@ function loadPage() {
                     </figure>
                     <h2>Revisión de compra</h2>
                     <ul>
-                        <li></li>
+                        <li>Nombre : ${foreachshirt.name},Color : ${foreachshirt.color},Tamaño : ${foreachshirt.size},Cantidad : ${foreachshirt.quantity},Detalles : ${foreachshirt.detail}.</li>
                     </ul>
                     <form class="form_modal_payload" id="form_modal_payload">
                         <label>Dirección</label>
-                        <input type="text" placeholder="Indica tu dirección acá" autocomplete="street-address">
+                        <input type="text" placeholder="Indica tu dirección acá" autocomplete="street-address" id="input_direction">
                         <label>Punto de referencia</label>
-                        <input type="text" placeholder="Indica un punto de refencia cercano a donde recibes el pedido">
+                        <input type="text" placeholder="Indica un punto de refencia cercano a donde recibes el pedido" id="input_reference">
                         <label>Correo electronico</label>
-                        <input type="email" placeholder="Indica tu gmail acá" autocomplete="email">
+                        <input type="email" placeholder="Indica tu email acá" autocomplete="email" id="input_email">
                         <label>Número de télefono</label>
-                        <input type="number" placeholder="Indica tu número de celular acá" autocomplete="tel">
+                        <input type="number" placeholder="Indica tu número de celular acá" autocomplete="tel" id="input_numberphone">
                         <label>Indica algunas caracteristicas especiales de tu pedido</label>
-                        <textarea></textarea>
+                        <textarea id="input_details"></textarea>
                         <input type="submit" value="Enviar" class="inputsubmit_payload" id="inputsubmit_payload"></input>
                     </form>
                 </section>
             </div>
         `;
-        containerModalBuy.innerHTML = containerModal;
+        })
+        containerModalBuy.innerHTML += containerModal;
         const containerModalBuyLoad = document.querySelector('#container_modal_buyload');
         const iconCloseFormPaylaod = document.querySelector('#icon_close_formpayload');
         const inputSubmitPayload = document.querySelector('#inputsubmit_payload');
+        const inputDirection = document.querySelector('#input_direction');
+        const inputReference = document.querySelector('#input_reference');
+        const inputEmail = document.querySelector('#input_email');
+        const numberPhone = document.querySelector('#input_numberphone');
+        const inputDetails = document.querySelector('#input_details');
         inputSubmitPayload.addEventListener('click',hideFirstModal);
-        iconCloseFormPaylaod.addEventListener('click',hideFirstModal);
+        iconCloseFormPaylaod.addEventListener('click',hideFirstModal);        
         function showFirstModal() {
             containerModalBuyLoad.classList.add('container_modal_buyload_show');
         };
@@ -105,6 +120,19 @@ function loadPage() {
         showFirstModal();
         const formModalPayload = document.querySelector('#form_modal_payload');
         formModalPayload.addEventListener('submit',function(event){
+            let TinputDirection = inputDirection.value;
+            let TinputReference = inputReference.value;
+            let TinputEmail = inputEmail.value;
+            let TnumberPhone = numberPhone.value;
+            let TinputDetails = inputDetails;
+            let addressTwo = {
+                address : TinputDirection,
+                reference : TinputReference,
+                email : TinputEmail,
+                phone : TnumberPhone,
+                detail : TinputDetails
+            };
+            listAddres.push(addressTwo);      
             event.preventDefault();
             sendOrderWsGmail();
         });
@@ -117,26 +145,26 @@ function loadPage() {
             <div>
                 <figure>
                     <img src='${tshirts.photo}' alt=''>
-                    <h2>${tshirts.name}</h2>
+                    <h2 id="target_contain_name">${tshirts.name}</h2>
                 </figure>
                 <p>$${convertNumbertoMoney(tshirts.priceCOP)} COP - $${tshirts.priceBTC} BTC</p>
-                <form class='section_options_clothes'>
+                <form class="section_options_clothes">
                     <p>Seleccione el color</p>
-                    <select>
+                    <select id="target_contan_color">
                         ${tshirts.colors.map(color => `<option>${color}</option>`).join('')};
                     </select>
                     <p>Seleccione la talla</p>
-                    <select>
+                    <select id="target_contain_size">
                         ${tshirts.size.map(size => `<option>${size}</option>`).join('')};
                     </select>
                     <p>Seleccione la cantidad</p>
-                    <select>
+                    <select id="target_contain_quantity">
                         ${tshirts.limit.map(limit => `<option>${limit}</option>`).join('')};
                     </select>
                 </form>
                 <section>
                     <p>Indique detalles</p>
-                    <textarea></textarea>
+                    <textarea id="target_contain_details"></textarea>
                 </section>
                 <button class="button_buy_load">Comprar</button>
                 <p class="price_updated">Precio actualizado al día: ${updatedPrice}</p>
@@ -146,7 +174,29 @@ function loadPage() {
     const buttonBuyLoad = document.querySelectorAll('.button_buy_load')
     buttonBuyLoad.forEach((button)=>{
         button.addEventListener('click',function(){
-            sendOrder();
+            const targetContainName = document.querySelector('#target_contain_name');
+            const targetContainColor = document.querySelector('#target_contan_color');
+            const targetContainSize = document.querySelector('#target_contain_size');
+            const targetContainQuantity = document.querySelector('#target_contain_quantity');
+            const targetContainDetails = document.querySelector('#target_contain_details');
+            let nameTarget = targetContainName.innerText;
+            let  colorTarget= targetContainColor.value;
+            let sizeTarget = targetContainSize.value;
+            let quantityTarget = targetContainQuantity.value;
+            let detailTarget = targetContainDetails.value;
+
+            function sendProductArray() {
+                let savedObjectTarget = {
+                    name : nameTarget,
+                    color : colorTarget,
+                    size : sizeTarget,
+                    quantity : quantityTarget,
+                    detail : detailTarget
+                };
+                listShirt.push(savedObjectTarget);
+                sendOrder();
+            };
+            sendProductArray();
         })
     })
     })
