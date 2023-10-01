@@ -44,6 +44,12 @@ button{
 .list_bar_header>ul>li:hover{
     color: rgb(184, 184, 184);
 }
+.list_bar_header_mobile{
+    display: none;
+}
+.logo_hamb{
+    display: none;
+}
 .container_images_main_style{
     display: flex;
 }
@@ -221,3 +227,20 @@ button{
     opacity: 1;
     pointer-events: none;
 }
+@media (max-width :640px) {
+    .container_header_section{
+        justify-content: center
+    }
+    .container_images_main_style{
+        flex-direction: column;
+    }
+    .list_bar_header{
+        display: none
+    }
+    .logo_hamb{
+        width: 40px;
+        position: absolute;
+        top: 40px;
+        left: 0
+    }
+};
