@@ -43,26 +43,28 @@ function loadPage() {
         function sendOrderWsGmail() {
            listShirt.forEach((listOne)=>{
             listAddres.forEach((listTwo)=>{
-                containerModal = `
-            <div class="container_modal_wsGmail" id="container_modal_wsGmail">
-                <section class="container_contain_wsGmail" id="container_contain_gsGmail">
-                    <figure>
-                        <img src="./resources/img/icone-x-avec-cercle-gris.png" class="icon_x_wsgm" id="icon_x_wsgm">
-                    </figure>
-                    <h2>¡Ya estamos a punto!,elige alguna de las dos opciones para finalmente enviar tu pedido</h2>
-                    <figure>
-                        <a href="https://wa.me/573152264378?text=¡Hola,estos%20son%20los%20detalles%20de%20mi%20pedido!:${listOne.name},color:${listOne.color},talla:${listOne.size},cantidad:${listOne.quantity},detalles:${listOne.detail},esta%20es%20el%20detalle%20de%20mi%20dirección:${listTwo.address},${listTwo.reference}" target="_blank">
-                            <img src="./resources/img/whatsapp-logo-png.png" class="btn_ws_gmail">
-                        </a>
-                        <img src="./resources/img/logo_gmail_png.png" class="btn_gmail_ws">
-                    </figure>
-                </section>
-            </div>
-            `;
+                const constructedMessage = `¡Hola, estos son los detalles de mi pedido!:${listOne.name},color:${listOne.color},talla:${listOne.size},cantidad:${listOne.quantity},detalles:${listOne.detail},esta es el detalle de mi dirección:${listTwo.address},Punto de referencia:${listTwo.reference},¡Este es mi email por si algo!:${listTwo.email},¡Cuando estén cerca me llaman!:${listTwo.phone},¡si tengo algún detalle te lo dejo por acá!:${listTwo.detail}`;
+                message.push(constructedMessage);
             })
            })
-            console.log(listAddres);
-            console.log(listShirt);
+            containerModal = `
+             <div class="container_modal_wsGmail" id="container_modal_wsGmail">
+                 <section class="container_contain_wsGmail" id="container_contain_gsGmail">
+                     <figure>
+                         <img src="./resources/img/icone-x-avec-cercle-gris.png" class="icon_x_wsgm" id="icon_x_wsgm">
+                     </figure>
+                     <h2>¡Ya estamos a punto!,elige alguna de las dos opciones para finalmente enviar tu pedido</h2>
+                     <figure>
+                        ${message.map(message=> `
+                        <a href="https://wa.me/573152264378?text=${encodeURIComponent(message)}" target="_blank">
+                             <img src="./resources/img/whatsapp-logo-png.png" class="btn_ws_gmail">
+                         </a>
+                        `).join('')}
+                         <img src="./resources/img/logo_gmail_png.png" class="btn_gmail_ws">
+                     </figure>
+                 </section>
+             </div>
+             `;
             containerModalWsGM.innerHTML = containerModal;
             const iconXwsgm = document.querySelector('#icon_x_wsgm');
             iconXwsgm.addEventListener('click',function() {
@@ -127,7 +129,7 @@ function loadPage() {
             let TinputReference = inputReference.value;
             let TinputEmail = inputEmail.value;
             let TnumberPhone = numberPhone.value;
-            let TinputDetails = inputDetails;
+            let TinputDetails = inputDetails.value;
             let addressTwo = {
                 address : TinputDirection,
                 reference : TinputReference,
