@@ -1,6 +1,8 @@
 const containerImagesClothes = document.querySelector('#container_images_main');
 const containerModalBuy = document.querySelector('#container_modal_buy');
 const containerModalWsGM = document.querySelector('#container_modal_ws_gm');
+const logoHamb = document.querySelector('#logo_hamb');
+const containerWindowsOption = document.querySelector('#container_window_option');
 
 let updatedPrice = '26/09/23 - 17:36 PM';
 
@@ -37,7 +39,21 @@ function convertNumbertoMoney(a) {
 let tshirtoversizeblack = new Clothes(1,'Shirts','Camiseta Oversize Negra','./resources/img/oversize_unicolor_negra_2.png',['Blanco','Negro'],40000,0.00038,'Camiseta Unicolor cuello redondo, el tamaño de manga es 3/4,el tipo de tela es liso hecho de poly algodón.',['M','L'],generateLimitArray(3));
 let tshirtoversizewhite = new Clothes(2,'Shirts','Camiseta Oversize Blanca','./resources/img/oversize_unicolor_blanca_2.png',['Blanco','Negro'],40000,0.00038,'Camiseta Unicolor cuello redondo, el tamaño de manga es 3/4,el tipo de tela es liso hecho de poly algodón.',['S','M'],generateLimitArray(3));
 
+logoHamb.addEventListener('click',function(){
+    containerImagesClothes.style.display = 'none';
 
+    let divwindows;
+    divwindows = `
+        <div class="windows_option">
+            <section>
+                <p>Inicio</p>
+                <p>Nosotros</p>
+                <p>Contactanos</p>
+            </section>
+        </div>
+    `;
+    containerWindowsOption.innerHTML = divwindows;
+});
 function loadPage() {
     function sendOrder() {
         function sendOrderWsGmail() {

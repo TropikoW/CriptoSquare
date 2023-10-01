@@ -237,10 +237,14 @@ button{
     .list_bar_header{
         display: none
     }
+    .list_bar_header_mobile{
+        display: flex;
+    }
     .logo_hamb{
+        display: flex;
         width: 40px;
         position: absolute;
         top: 40px;
-        left: 0
+        left: 25px;
     }
 };
