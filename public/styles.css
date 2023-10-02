@@ -268,6 +268,9 @@ footer>p{
     .icon_x_wsgm{
         top: 116px;
     }
+    .container_contain_modal_buyload{
+        width: 100%;
+    }
     .img_contain_sect_buyorder{
         width: 300px;
     }
