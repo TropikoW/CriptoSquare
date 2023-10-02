@@ -72,7 +72,7 @@ function loadPage() {
                      <h2>¡Ya estamos a punto!,elige alguna de las dos opciones para finalmente enviar tu pedido</h2>
                      <figure>
                         ${message.map(message=> `
-                        <a href="https://wa.me/573152264378?text=${encodeURIComponent(message)}" target="_blank">
+                        <a href="https://wa.me/573157569760?text=${encodeURIComponent(message)}" target="_blank">
                              <img src="./resources/img/whatsapp-logo-png.png" class="btn_ws_gmail">
                          </a>
                         `).join('')}

@@ -227,6 +227,10 @@ button{
     opacity: 1;
     pointer-events: none;
 }
+footer>p{
+    font-size: 10px;
+    color: rgb(190, 190, 190);
+}
 @media (max-width :640px) {
     .container_header_section{
         justify-content: center
