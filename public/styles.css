@@ -238,6 +238,9 @@ footer>p{
     .container_images_main_style{
         flex-direction: column;
     }
+    .container_images_main_style>div{
+        margin: 0;
+    }
     .list_bar_header{
         display: none
     }
