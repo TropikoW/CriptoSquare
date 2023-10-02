@@ -263,4 +263,12 @@ footer>p{
         top: 290px;
         left:30px
     }
-};
+}
+@media (max-width :336px) {
+    .icon_x_wsgm{
+        top: 116px;
+    }
+    .img_contain_sect_buyorder{
+        width: 300px;
+    }
+}
