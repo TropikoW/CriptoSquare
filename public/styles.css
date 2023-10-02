@@ -251,4 +251,9 @@ footer>p{
         top: 40px;
         left: 25px;
     }
+    .windows_option > section{
+        display: grid;
+        gap: 10px;
+        text-align: center
+    }
 };

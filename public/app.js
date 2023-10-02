@@ -4,7 +4,7 @@ const containerModalWsGM = document.querySelector('#container_modal_ws_gm');
 const logoHamb = document.querySelector('#logo_hamb');
 const containerWindowsOption = document.querySelector('#container_window_option');
 
-let updatedPrice = '26/09/23 - 17:36 PM';
+let updatedPrice = '02/10/23 - 13:14 PM';
 
 let tshirt = [];
 let listShirt = [];
@@ -14,12 +14,11 @@ let optionClothes;
 let containerModal;
 
 class Clothes {
-    constructor(id,type,name,photo,colors,priceCOP,priceBTC,description,size,limit = null) {
+    constructor(id,type,name,photo,priceCOP,priceBTC,description,size,limit = null) {
         this.id = id;
         this.type = type;
         this.name = name;
         this.photo = photo;
-        this.colors = colors;
         this.priceCOP = priceCOP;
         this.priceBTC = priceBTC;
         this.description = description;
@@ -36,30 +35,33 @@ function convertNumbertoMoney(a) {
     return b;
 };
 
-let tshirtoversizeblack = new Clothes(1,'Shirts','Camiseta Oversize Negra','./resources/img/oversize_unicolor_negra_2.png',['Blanco','Negro'],40000,0.00038,'Camiseta Unicolor cuello redondo, el tamaño de manga es 3/4,el tipo de tela es liso hecho de poly algodón.',['M','L'],generateLimitArray(3));
-let tshirtoversizewhite = new Clothes(2,'Shirts','Camiseta Oversize Blanca','./resources/img/oversize_unicolor_blanca_2.png',['Blanco','Negro'],40000,0.00038,'Camiseta Unicolor cuello redondo, el tamaño de manga es 3/4,el tipo de tela es liso hecho de poly algodón.',['S','M'],generateLimitArray(3));
+let tshirtoversizeblack = new Clothes(1,'Shirts','Camiseta Oversize Negra','./resources/img/oversize_unicolor_negra_2.png',40000,0.00035,'Camiseta Unicolor cuello redondo, el tamaño de manga es 3/4,el tipo de tela es liso hecho de poly algodón.',['M','L'],generateLimitArray(3));
+let tshirtoversizewhite = new Clothes(2,'Shirts','Camiseta Oversize Blanca','./resources/img/oversize_unicolor_blanca_2.png',40000,0.00035,'Camiseta Unicolor cuello redondo, el tamaño de manga es 3/4,el tipo de tela es liso hecho de poly algodón.',['S','M'],generateLimitArray(3));
 
 logoHamb.addEventListener('click',function(){
-    containerImagesClothes.style.display = 'none';
-
     let divwindows;
-    divwindows = `
-        <div class="windows_option">
-            <section>
-                <p>Inicio</p>
-                <p>Nosotros</p>
-                <p>Contactanos</p>
-            </section>
-        </div>
-    `;
-    containerWindowsOption.innerHTML = divwindows;
+    if (containerImagesClothes.style.display === 'none') {
+        containerImagesClothes.style.display = 'block';
+    } else {
+        containerImagesClothes.style.display = 'none';
+        divwindows = `
+            <div class="windows_option">
+                <section>
+                    <p>Inicio</p>
+                    <p>Nosotros</p>
+                    <p>Contactanos</p>
+                </section>
+            </div>
+        `;
+        containerWindowsOption.innerHTML = divwindows;
+    }
 });
 function loadPage() {
     function sendOrder() {
         function sendOrderWsGmail() {
            listShirt.forEach((listOne)=>{
             listAddres.forEach((listTwo)=>{
-                const constructedMessage = `¡Hola, estos son los detalles de mi pedido!:${listOne.name},color:${listOne.color},talla:${listOne.size},cantidad:${listOne.quantity},detalles:${listOne.detail},esta es el detalle de mi dirección:${listTwo.address},Punto de referencia:${listTwo.reference},¡Este es mi email por si algo!:${listTwo.email},¡Cuando estén cerca me llaman!:${listTwo.phone},¡si tengo algún detalle te lo dejo por acá!:${listTwo.detail}`;
+                const constructedMessage = `¡Hola, estos son los detalles de mi pedido!:${listOne.name},talla:${listOne.size},cantidad:${listOne.quantity},detalles:${listOne.detail},esta es el detalle de mi dirección:${listTwo.address},Punto de referencia:${listTwo.reference},¡Este es mi email por si algo!:${listTwo.email},¡Cuando estén cerca me llaman!:${listTwo.phone},¡si tengo algún detalle te lo dejo por acá!:${listTwo.detail}`;
                 message.push(constructedMessage);
             })
            })
@@ -102,7 +104,7 @@ function loadPage() {
                     </figure>
                     <h2>Revisión de compra</h2>
                     <ul>
-                        <li>Nombre : ${foreachshirt.name},Color : ${foreachshirt.color},Tamaño : ${foreachshirt.size},Cantidad : ${foreachshirt.quantity},Detalles : ${foreachshirt.detail}.</li>
+                        <li>Nombre : ${foreachshirt.name},Tamaño : ${foreachshirt.size},Cantidad : ${foreachshirt.quantity},Detalles : ${foreachshirt.detail}.</li>
                     </ul>
                     <form class="form_modal_payload" id="form_modal_payload">
                         <label>Dirección</label>
@@ -161,31 +163,27 @@ function loadPage() {
    
     tshirt.push(tshirtoversizeblack,tshirtoversizewhite);
     
-    tshirt.forEach((tshirts)=>{
+    tshirt.forEach((tshirts,index)=>{
         optionClothes = `
             <div>
                 <figure>
                     <img src='${tshirts.photo}' alt=''>
-                    <h2 id="target_contain_name">${tshirts.name}</h2>
+                    <h2 class="target_contain_name">${tshirts.name}</h2>
                 </figure>
                 <p>$${convertNumbertoMoney(tshirts.priceCOP)} COP - $${tshirts.priceBTC} BTC</p>
                 <form class="section_options_clothes">
-                    <p>Seleccione el color</p>
-                    <select id="target_contan_color">
-                        ${tshirts.colors.map(color => `<option>${color}</option>`).join('')};
-                    </select>
                     <p>Seleccione la talla</p>
-                    <select id="target_contain_size">
+                    <select class="target_contain_size">
                         ${tshirts.size.map(size => `<option>${size}</option>`).join('')};
                     </select>
                     <p>Seleccione la cantidad</p>
-                    <select id="target_contain_quantity">
+                    <select class="target_contain_quantity">
                         ${tshirts.limit.map(limit => `<option>${limit}</option>`).join('')};
                     </select>
                 </form>
                 <section>
                     <p>Indique detalles</p>
-                    <textarea id="target_contain_details"></textarea>
+                    <textarea class="target_contain_details"></textarea>
                 </section>
                 <button class="button_buy_load">Comprar</button>
                 <p class="price_updated">Precio actualizado al día: ${updatedPrice}</p>
@@ -193,29 +191,28 @@ function loadPage() {
         `;    
     containerImagesClothes.innerHTML += optionClothes;
     const buttonBuyLoad = document.querySelectorAll('.button_buy_load')
-    buttonBuyLoad.forEach((button)=>{
+    const targetContainName = document.querySelectorAll('.target_contain_name');
+    const targetContainSize = document.querySelectorAll('.target_contain_size');
+    const targetContainQuantity = document.querySelectorAll('.target_contain_quantity');
+    const targetContainDetails = document.querySelectorAll('.target_contain_details');
+    buttonBuyLoad.forEach((button,butonIndex)=>{
         button.addEventListener('click',function(){
-            const targetContainName = document.querySelector('#target_contain_name');
-            const targetContainColor = document.querySelector('#target_contan_color');
-            const targetContainSize = document.querySelector('#target_contain_size');
-            const targetContainQuantity = document.querySelector('#target_contain_quantity');
-            const targetContainDetails = document.querySelector('#target_contain_details');
-            let nameTarget = targetContainName.innerText;
-            let  colorTarget= targetContainColor.value;
-            let sizeTarget = targetContainSize.value;
-            let quantityTarget = targetContainQuantity.value;
-            let detailTarget = targetContainDetails.value;
+            let nameTarget = targetContainName[butonIndex].innerText;
+            let sizeTarget = targetContainSize[butonIndex].value;
+            let quantityTarget = targetContainQuantity[butonIndex].value;
+            let detailTarget = targetContainDetails[butonIndex].value;
+            console.log(targetContainName,targetContainSize,targetContainQuantity,targetContainDetails);
 
             function sendProductArray() {
                 let savedObjectTarget = {
                     name : nameTarget,
-                    color : colorTarget,
                     size : sizeTarget,
                     quantity : quantityTarget,
                     detail : detailTarget
                 };
                 listShirt.push(savedObjectTarget);
                 sendOrder();
+                console.log(listShirt);
             };
             sendProductArray();
         })
