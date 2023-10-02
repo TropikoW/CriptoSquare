@@ -256,4 +256,8 @@ footer>p{
         gap: 10px;
         text-align: center
     }
+    .icon_x_wsgm{
+        top: 290px;
+        left:30px
+    }
 };
