@@ -84,7 +84,6 @@ function loadPage() {
                  </section>
              </div>
              `;
-             console.log(message);
             containerModalWsGM.innerHTML = containerModal;
             const iconXwsgm = document.querySelector('#icon_x_wsgm');
             const container_iconXwsgm = document.querySelector('#container__icon__x__wsgm');
@@ -93,6 +92,7 @@ function loadPage() {
                 containerModalWsGM.innerHTML = containerModal;
                 message.length = 0;
                 listShirt.length = 0;
+                listAddres.length = 0;
             });
         };
         listShirt.forEach((foreachshirt)=>{
@@ -216,12 +216,12 @@ function loadPage() {
                 };
                 listShirt.push(savedObjectTarget);
                 sendOrder();
-                console.log(listShirt);
             };
             sendProductArray();
         })
     })
-    })
+    })    
+    console.log('tshirt:',tshirt,'listshirt,',listShirt,'listaddress:',listAddres);
 };
 
 
