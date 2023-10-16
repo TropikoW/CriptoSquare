@@ -228,6 +228,42 @@ button{
     opacity: 1;
     pointer-events: none;
 }
+#container__unavailable{
+    position: fixed;
+    background-color: #111111bd;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    opacity: 0;
+    pointer-events: none;
+}
+#container__unavailable__contain{
+    border: 1px solid rgb(189, 189, 189);
+    border-radius: 20px;
+    text-align: center;
+    width: 400px;
+    padding: 40px;    
+    background-color: white;
+    margin: 100px auto;
+}
+#container__unavailable__contain>figure{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+#container__unavailable__contain>figure>img:nth-child(1){
+    position: absolute;
+    cursor: pointer;
+    width: 30px;
+    top: 0;
+    left: 0;
+}
+#container__unavailable__contain>p>button{
+    padding: 5px;
+    cursor: pointer;
+}
 footer>p{
     font-size: 10px;
     color: rgb(190, 190, 190);
