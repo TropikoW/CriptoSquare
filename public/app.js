@@ -37,6 +37,7 @@ function convertNumbertoMoney(a) {
 
 let tshirtoversizeblack = new Clothes(1,'Shirts','Camiseta Oversize Negra','./resources/img/oversize_unicolor_negra_2.png',40000,0.00035,'Camiseta Unicolor cuello redondo, el tamaño de manga es 3/4,el tipo de tela es liso hecho de poly algodón.',['M','L'],generateLimitArray(3));
 let tshirtoversizewhite = new Clothes(2,'Shirts','Camiseta Oversize Blanca','./resources/img/oversize_unicolor_blanca_2.png',40000,0.00035,'Camiseta Unicolor cuello redondo, el tamaño de manga es 3/4,el tipo de tela es liso hecho de poly algodón.',['S','M'],generateLimitArray(3));
+let tshirtoversizeblacktropick = new Clothes(3,'Shirts','Camiseta Oversize Tropick Negra','./resources/img/fto_web.png',55000,0.00035,'Camiseta Unicolor Marca Tropik,tamaño de manga 3/4,tipo de tela liso hecho de poly algodón,',['M'],generateLimitArray(1));
 
 logoHamb.addEventListener('click',function(){
     let divwindows;
@@ -68,7 +69,7 @@ function loadPage() {
             containerModal = `
              <div class="container_modal_wsGmail" id="container_modal_wsGmail">
                  <section class="container_contain_wsGmail" id="container_contain_gsGmail">
-                     <figure>
+                     <figure id="container__icon__x__wsgm">
                          <img src="./resources/img/icone-x-avec-cercle-gris.png" class="icon_x_wsgm" id="icon_x_wsgm">
                      </figure>
                      <h2>¡Ya estamos a punto!,elige alguna de las dos opciones para finalmente enviar tu pedido</h2>
@@ -83,11 +84,15 @@ function loadPage() {
                  </section>
              </div>
              `;
+             console.log(message);
             containerModalWsGM.innerHTML = containerModal;
             const iconXwsgm = document.querySelector('#icon_x_wsgm');
+            const container_iconXwsgm = document.querySelector('#container__icon__x__wsgm');
             iconXwsgm.addEventListener('click',function() {
                 containerModal = '';
                 containerModalWsGM.innerHTML = containerModal;
+                message.length = 0;
+                listShirt.length = 0;
             });
         };
         listShirt.forEach((foreachshirt)=>{
@@ -201,7 +206,6 @@ function loadPage() {
             let sizeTarget = targetContainSize[butonIndex].value;
             let quantityTarget = targetContainQuantity[butonIndex].value;
             let detailTarget = targetContainDetails[butonIndex].value;
-            console.log(targetContainName,targetContainSize,targetContainQuantity,targetContainDetails);
 
             function sendProductArray() {
                 let savedObjectTarget = {

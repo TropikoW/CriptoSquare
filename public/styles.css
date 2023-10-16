@@ -259,9 +259,25 @@ footer>p{
         gap: 10px;
         text-align: center
     }
+    .container_images_main_style > div:nth-child(1){
+        border-top: 0;
+    }
+    .container_images_main_style > div{
+        border-radius: 0;
+        border: none;
+        margin-bottom: 10px;
+        border-top: 1px solid gray;
+    }
+    .container_contain_modal_buyload{
+        width: 100%;
+    }
+    .icon_close_formpayload{
+        top: 10px;
+        left: 5px;
+    }
     .icon_x_wsgm{
-        top: 290px;
-        left:30px
+        top: 140px;
+        left:45px
     }
 }
 @media (max-width :336px) {
