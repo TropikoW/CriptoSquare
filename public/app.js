@@ -6,9 +6,9 @@ const containerWindowsOption = document.querySelector('#container_window_option'
 const containerUnavailable = document.querySelector('#container__unavailable');
 const containerUnavailableContain  = document.querySelector('#container__unavailable__contain');
 const closeUnavailable = document.querySelector('#close__unavailable');
-const btnStartBtn = document.querySelectorAll('.btn__startBtn');
-const btnUs = document.querySelectorAll('.btn__us');
-const btnConactUs = document.querySelectorAll('.btn__contactus');
+const btnStartBtn = document.querySelector('#btn__startBtn');
+const btnUs = document.querySelector('#btn__us');
+const btnConactUs = document.querySelector('#btn__contactus');
 
 let updatedPrice = '02/10/23 - 13:14 PM';
 
@@ -240,17 +240,17 @@ function loadPage() {
         containerUnavailableContain.style.display = 'block';
         containerUnavailable.style.opacity = 1;
         containerUnavailable.style.pointerEvents = 'unset';
-    })
+    });
     btnConactUs.addEventListener('click',function(){
         containerUnavailableContain.style.display = 'block';
         containerUnavailable.style.opacity = 1;
         containerUnavailable.style.pointerEvents = 'unset';
-    })
+    });
     btnUs.addEventListener('click',function(){
         containerUnavailableContain.style.display = 'block';
         containerUnavailable.style.opacity = 1;
         containerUnavailable.style.pointerEvents = 'unset';
-    })
+    });
     console.warn('HI DEVELOPER!THIS PAGE IS UNDER DEVELOPMENT ! IF YOU WANT TO SEE MY GITHUB REPOSITORY YOU CAN CLICK HERE TO BE REDIRECT : https://github.com/TropikoW/project_criptosquare');
 };
 
