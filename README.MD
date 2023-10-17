@@ -60,7 +60,7 @@ Versioning
 The project follows semantic versioning. The version information is displayed in the footer:
 
 <footer>
-    <p>Version 0.10.1-ALPHA</p>
+    <p>Version {major}.{minor}.{path}-{pre-release}</p>
 </footer>
 
 Contact and Support
